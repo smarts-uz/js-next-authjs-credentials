@@ -10,12 +10,12 @@ import { getUserByEmail } from "@/data/user";
 export default {
   providers: [
     GitHub({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      clientId: process.env.NEXT_PUBLIC_GITHUB_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GITHUB_SECRET,
     }),
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: process.env.NEXT_PUBLIC_GOOGLE_ID,
+      clientSecret: process.env.NEXT_PUBLIC_GOOGLE_SECRET,
     }),
     Credentials({
       async authorize(credentials) {
@@ -36,4 +36,5 @@ export default {
       },
     }),
   ],
+  secret: process.env.NEXT_PUBLIC_SECRET,
 } satisfies NextAuthConfig;

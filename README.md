@@ -127,25 +127,6 @@ The concept behind this toolkit is to create a scalable and maintainable solutio
 2. Implement advanced custom authentication into your Next.js application using the toolkit's structured approach.
 3. Leverage the provided features and libraries to enhance your authentication mechanisms.
 
-## Environment Variables
-
-```bash
-DATABASE_URL=
-DIRECT_URL=
-
-AUTH_SECRET=
-
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-
-GOOGLE_CLIENT_ID=
-GOOGLE_CLIENT_SECRET=
-
-RESEND_API_KEY=
-
-NEXT_PUBLIC_APP_URL=
-```
-
 ## Contributions
 
 Contributions are encouraged! Get in touch to contributing to this project.

@@ -35,18 +35,18 @@ export const login = async (
     return { error: "User not registered!" };
   }
 
-  if (!existingUser.emailVerified) {
-    const verificationToken = await generateVerificationToken(
-      existingUser.email
-    );
+  // if (!existingUser.emailVerified) {
+  //   const verificationToken = await generateVerificationToken(
+  //     existingUser.email
+  //   );
 
-    await sendVerificationEmail(
-      verificationToken.email,
-      verificationToken.token
-    );
+  //   await sendVerificationEmail(
+  //     verificationToken.email,
+  //     verificationToken.token
+  //   );
 
-    return { success: "Verification email sent!" };
-  }
+  //   return { success: "Verification email sent!" };
+  // }
 
   if (existingUser.isTwoFactorEnabled && existingUser.email) {
     if (code) {

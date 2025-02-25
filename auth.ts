@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthResult } from "next-auth";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { db } from "@/lib/db";
@@ -6,6 +6,10 @@ import authConfig from "./auth.config";
 import { getUserById } from "./data/user";
 import { getTwoFactorConfirmationByUserId } from "./data/two-factor-confirmation";
 import { getAccountByUserId } from "./data/account";
+
+export interface ExtendedNextAuthResult extends NextAuthResult {
+  update: (data?: Record<string, any>) => Promise<void>;
+}
 
 export const {
   handlers: { GET, POST },
@@ -31,10 +35,12 @@ export const {
       // Allow OAuth without email verification
       if (account?.provider !== "credentials") return true;
 
+      if (!user?.id) return false;
+
       const existingUser = await getUserById(user.id);
 
       // Prevent sign in without email verification
-      if (!existingUser?.emailVerified) return false;
+      // if (!existingUser?.emailVerified) return false;
 
       if (existingUser.isTwoFactorEnabled) {
         const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
@@ -93,4 +99,4 @@ export const {
   adapter: PrismaAdapter(db),
   session: { strategy: "jwt" },
   ...authConfig,
-});
+}) as ExtendedNextAuthResult;
